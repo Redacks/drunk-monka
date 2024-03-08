@@ -1,22 +1,22 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import CustomButton from './CustomButton.vue'
-import { useStore } from '@/stores/playerStore'
+import { useStore } from '@/stores/taskStore'
 
 const emit = defineEmits<{
   (e: 'close'): void
 }>()
 
-const playerStore = useStore()
-const newPlayerName = ref('')
+const tasksStore = useStore()
+const newTaskText = ref('')
 const errorMessage = ref('')
 
-const addNewPlayer = (player: string) => {
-  if (playerStore.addPlayer(player)) {
+const addNewTask = (task: string) => {
+  if (tasksStore.addTask(task)) {
     errorMessage.value = ''
     emit('close')
   } else {
-    errorMessage.value = 'Ungültiger Spielername oder Name bereits vorhanden!'
+    errorMessage.value = 'Ungültige Aufgabe'
   }
 }
 </script>
@@ -26,15 +26,19 @@ const addNewPlayer = (player: string) => {
   >
     <div class="mx-auto flex min-h-screen max-w-3xl flex-col justify-center">
       <div class="relative mx-auto flex flex-col items-center gap-6">
-        <input
+        <textarea
           type="text"
-          v-model="newPlayerName"
-          class="rounded-2xl border-0 bg-gray-600 p-2 text-center text-xl text-customWhite shadow-none ring-0 focus:border-0 focus:shadow-none focus:ring-0"
-          placeholder="Spielername"
-        />
+          v-model="newTaskText"
+          class="resize-y rounded-2xl border-0 bg-gray-600 p-4 text-xl text-customWhite shadow-none ring-0 focus:border-0 focus:shadow-none focus:ring-0"
+          placeholder="Aufgabe eingeben
+
+Für Spielernamen {player} eingeben"
+          rows="5"
+          resiz
+        ></textarea>
         <span v-if="errorMessage" class="text-customRed">{{ errorMessage }}</span>
-        <button @click="addNewPlayer(newPlayerName)">
-          <CustomButton text="Spieler hinzufügen" icon="mingcute:user-add-2-fill" color="green" />
+        <button @click="addNewTask(newTaskText)">
+          <CustomButton text="Aufgabe hinzufügen" icon="mingcute:user-add-2-fill" color="green" />
         </button>
         <button @click="emit('close')">
           <CustomButton text="Zurück" color="transparent" />

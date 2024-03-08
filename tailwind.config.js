@@ -5,6 +5,12 @@ export default {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      height: {
+        screen: ['100vh', '-webkit-fill-available', '100dvh']
+      },
+      minHeight: {
+        screen: ['100vh', '-webkit-fill-available', '100dvh']
+      },
       colors: {
         primary: '#272838',
         secondary: '#1282A2',

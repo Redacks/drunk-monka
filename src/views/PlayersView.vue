@@ -29,14 +29,14 @@ const newPlayerDialogOpen = ref(false)
           </button>
         </div>
       </div>
-      <AddPlayer v-if="newPlayerDialogOpen" @close="newPlayerDialogOpen = false"></AddPlayer>
+      <AddPlayer v-if="newPlayerDialogOpen" @close="newPlayerDialogOpen = false" />
       <div class="my-6 mt-auto flex flex-col gap-6 pt-6">
         <button class="mx-auto" @click="newPlayerDialogOpen = true">
           <CustomButton icon="mingcute:user-add-2-fill" text="Spieler hinzufügen" color="green" />
         </button>
         <RouterLink to="/" class="mx-auto">
-          <CustomButton text="Zurück" color="transparent"
-        /></RouterLink>
+          <CustomButton text="Zurück" color="transparent" />
+        </RouterLink>
       </div>
     </div>
   </div>
