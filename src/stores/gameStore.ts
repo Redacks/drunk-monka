@@ -6,9 +6,6 @@ interface TaskPlayerMap {
   [task: string]: string[];
 }
 
-const taskStore = useTaskStore();
-const playerStore = usePlayerStore();
-
 export const useGameStore = defineStore("game", {
   state: () => ({
     taskPlayerMap: {} as TaskPlayerMap,
@@ -16,6 +13,7 @@ export const useGameStore = defineStore("game", {
   }),
   actions: {
     generateRandomTaskAndPlayer() {
+      const taskStore = useTaskStore();
       if (taskStore.tasks.length == 0) {
         return "Erstelle erst ein paar Aufgaben!";
       }
@@ -39,6 +37,7 @@ export const useGameStore = defineStore("game", {
     },
 
     getRandomTask(): string {
+      const taskStore = useTaskStore();
       let randomTask;
       do {
         randomTask = taskStore.tasks[Math.floor(Math.random() * taskStore.tasks.length)];
@@ -48,6 +47,7 @@ export const useGameStore = defineStore("game", {
     },
 
     getAvailablePlayersForTask(task: string): string[] {
+      const playerStore = usePlayerStore();
       return playerStore.players.filter((player) => !this.taskPlayerMap[task]?.includes(player));
     },
 

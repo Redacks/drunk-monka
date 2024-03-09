@@ -27,7 +27,7 @@ let showInstallButton = !window.matchMedia("(display-mode: standalone)").matches
       </CustomLinkButton>
     </RouterLink>
   </div>
-  <RouterLink class="mx-auto mb-8" to="/install">
+  <RouterLink class="mx-auto mb-8" to="/install" v-if="showInstallButton">
     <CustomButton text="Download" color="green">
       <DownloadIcon class="mr-2" />
     </CustomButton>

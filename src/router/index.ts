@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
+import PlayView from "../views/PlayView.vue";
 import HomeView from "../views/HomeView.vue";
-import TaskView from "@/views/TaskView.vue";
-import PlayersView from "@/views/PlayersView.vue";
-
+import PlayersView from "../views/PlayersView.vue";
+import TaskView from "../views/TaskView.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -14,7 +14,7 @@ const router = createRouter({
     {
       path: "/play",
       name: "play",
-      component: PlayersView
+      component: PlayView
     },
     {
       path: "/players",
@@ -28,7 +28,7 @@ const router = createRouter({
     },
     {
       path: "/install",
-      name: "tasks",
+      name: "howtoinstall",
       component: () => import("../views/HowToInstall.vue")
     }
   ]
