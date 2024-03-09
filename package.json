@@ -13,8 +13,10 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@types/ua-parser-js": "^0.7.39",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",
+    "ua-parser-js": "^1.0.37",
     "vue": "^3.4.15",
     "vue-router": "^4.2.5"
   },

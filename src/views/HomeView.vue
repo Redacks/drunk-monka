@@ -6,21 +6,24 @@ import EditPlayerIcon from "virtual:icons/mingcute/user-edit-fill";
 import { onMounted, ref } from "vue";
 import CustomButton from "@/components/CustomButton.vue";
 import DownloadIcon from "~icons/mingcute/download-line";
+import UAParser from "ua-parser-js";
 
-const showInstallButton = ref(false);
-let installPrompt: BeforeInstallPromptEvent | null = null;
-onMounted(() => {
-  window.addEventListener("beforeinstallprompt", (event) => {
-    event.preventDefault();
-    installPrompt = event as BeforeInstallPromptEvent;
-    showInstallButton.value = true;
-  });
-});
+let parser = new UAParser(navigator.userAgent);
+let parserResults = parser.getResult();
 
-const installPWA = () => {
-  if (!installPrompt) return;
-  installPrompt.prompt();
-};
+let showInstallButton = !window.matchMedia("(display-mode: standalone)").matches;
+let installDocumentation = ref("");
+
+if (parserResults.os.name == "iOS") {
+  installDocumentation.value =
+    "https://aureatelabs.com/blog/install-pwa-to-device/#how-to-install-pwa-on-ios-devices";
+} else if (parserResults.os.name == "Android") {
+  installDocumentation.value =
+    "https://aureatelabs.com/blog/install-pwa-to-device/#how-to-add-pwa-to-android-devices";
+} else {
+  installDocumentation.value =
+    "https://aureatelabs.com/blog/install-pwa-to-device/#can-pwa-be-installed-on-the-desktop";
+}
 </script>
 <template>
   <div class="mt-2 flex flex-1 flex-col gap-6">
@@ -40,9 +43,14 @@ const installPWA = () => {
       </CustomLinkButton>
     </RouterLink>
   </div>
-  <button class="mx-auto mb-8" @click="installPWA">
+  <a
+    class="mx-auto mb-8"
+    v-if="showInstallButton && installDocumentation != ''"
+    :href="installDocumentation"
+    target="_blank"
+  >
     <CustomButton text="Download" color="green">
       <DownloadIcon class="mr-2" />
     </CustomButton>
-  </button>
+  </a>
 </template>
