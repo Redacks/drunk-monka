@@ -8,47 +8,18 @@ import CustomButton from "@/components/CustomButton.vue";
 import DownloadIcon from "~icons/mingcute/download-line";
 
 const showInstallButton = ref(false);
+let installPrompt: BeforeInstallPromptEvent | null = null;
 onMounted(() => {
-  // Check if the app is running in standalone mode (PWA)
-  showInstallButton.value = window.matchMedia("(display-mode: standalone)").matches;
+  window.addEventListener("beforeinstallprompt", (event) => {
+    event.preventDefault();
+    installPrompt = event as BeforeInstallPromptEvent;
+    showInstallButton.value = true;
+  });
 });
 
 const installPWA = () => {
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.ready
-      .then((registration) => {
-        if (!registration.active) {
-          throw new Error("Service Worker not active");
-        }
-
-        // Check if the beforeinstallprompt event is supported
-        if ("onbeforeinstallprompt" in window) {
-          // Listen for the beforeinstallprompt event
-          window.addEventListener("beforeinstallprompt", (event) => {
-            // Prevent the default behavior of the event
-            event.preventDefault();
-
-            // Show the install prompt to the user
-            const installPrompt = event as any; // TypeScript workaround
-            installPrompt.prompt();
-
-            // Wait for the user to respond to the prompt
-            installPrompt.userChoice.then((choiceResult: any) => {
-              if (choiceResult.outcome === "accepted") {
-                console.log("User accepted the PWA installation");
-              } else {
-                console.log("User dismissed the PWA installation");
-              }
-            });
-          });
-        } else {
-          console.warn("beforeinstallprompt event not supported");
-        }
-      })
-      .catch((error) => {
-        console.error("Error during PWA installation:", error);
-      });
-  }
+  if (!installPrompt) return;
+  installPrompt.prompt();
 };
 </script>
 <template>
