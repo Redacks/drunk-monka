@@ -4,6 +4,9 @@ import CustomButton from "../components/CustomButton.vue";
 import ConfirmGameCancel from "@/components/ConfirmGameCancel.vue";
 import { useGameStore } from "@/stores/gameStore";
 
+import StopIcon from "virtual:icons/mingcute/stop-fill";
+import NextTaskIcon from "virtual:icons/mingcute/arrow-right-fill";
+
 const gameStore = useGameStore();
 const openConfirmGameCancel = ref(false);
 
@@ -14,7 +17,7 @@ const currentTask = ref(
 <template>
   <div class="flex flex-1 flex-col text-center font-madimiOne text-customWhite">
     <div class="mx-[7vw] flex flex-1 flex-col">
-      <div class="mx-auto flex flex-1 items-center justify-center">
+      <div class="flex w-full flex-1 items-center justify-center">
         <div class="min-w-[50vw] whitespace-pre-wrap rounded-2xl bg-gray-600 p-4 text-2xl">
           {{ currentTask }}
         </div>
@@ -25,10 +28,14 @@ const currentTask = ref(
           class="mx-auto scale-125"
           @click="currentTask = gameStore.generateRandomTaskAndPlayer()"
         >
-          <CustomButton text="Nächste Aufgabe" color="green" icon="mingcute:arrow-right-fill" />
+          <CustomButton text="Nächste Aufgabe" color="green">
+            <NextTaskIcon class="mr-2" />
+          </CustomButton>
         </button>
         <button class="mx-auto" @click="openConfirmGameCancel = true">
-          <CustomButton text="Spiel stoppen" color="red" icon="mingcute:stop-fill" />
+          <CustomButton text="Spiel stoppen" color="red">
+            <StopIcon class="mr-2" />
+          </CustomButton>
         </button>
       </div>
     </div>

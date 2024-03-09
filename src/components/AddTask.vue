@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import CustomButton from "./CustomButton.vue";
 import { useTaskStore } from "@/stores/taskStore";
+import AddTaskIcon from "virtual:icons/mingcute/task-2-line";
 
 const emit = defineEmits<{
   (e: "close"): void;
@@ -38,7 +39,9 @@ Für Spielernamen {player} eingeben"
         ></textarea>
         <span v-if="errorMessage" class="text-customRed">{{ errorMessage }}</span>
         <button @click="addNewTask(newTaskText)">
-          <CustomButton text="Aufgabe hinzufügen" icon="mingcute:user-add-2-fill" color="green" />
+          <CustomButton text="Aufgabe hinzufügen" color="green">
+            <AddTaskIcon class="mr-2 block h-6 w-6" />
+          </CustomButton>
         </button>
         <button @click="emit('close')">
           <CustomButton text="Zurück" color="transparent" />

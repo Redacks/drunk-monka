@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import CustomButton from "./CustomButton.vue";
 import { usePlayerStore } from "@/stores/playerStore";
+import UserAddIcon from "virtual:icons/mingcute/user-add-2-fill";
 
 const emit = defineEmits<{
   (e: "close"): void;
@@ -34,7 +35,9 @@ const addNewPlayer = (player: string) => {
         />
         <span v-if="errorMessage" class="text-customRed">{{ errorMessage }}</span>
         <button @click="addNewPlayer(newPlayerName)">
-          <CustomButton text="Spieler hinzufügen" icon="mingcute:user-add-2-fill" color="green" />
+          <CustomButton text="Spieler hinzufügen" color="green">
+            <UserAddIcon class="mr-2 block h-6 w-6" />
+          </CustomButton>
         </button>
         <button @click="emit('close')">
           <CustomButton text="Zurück" color="transparent" />

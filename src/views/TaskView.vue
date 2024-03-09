@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { Icon } from "@iconify/vue";
 import CustomButton from "../components/CustomButton.vue";
 import { useTaskStore } from "@/stores/taskStore";
 import { storeToRefs } from "pinia";
 import AddTask from "@/components/AddTask.vue";
+import DeleteIcon from "virtual:icons/mingcute/delete-2-fill";
+import AddTaskIcon from "virtual:icons/mingcute/task-2-line";
 
 const tasksStore = useTaskStore();
 const { tasks } = storeToRefs(tasksStore);
@@ -22,14 +23,16 @@ const newTaskDialogOpen = ref(false);
         >
           {{ task }}
           <button class="transition-transform hover:scale-110" @click="tasksStore.removeTask(task)">
-            <Icon icon="mingcute:delete-2-fill" class="block h-6 w-6 text-customRed"></Icon>
+            <DeleteIcon class="block h-6 w-6 text-customRed" />
           </button>
         </div>
       </div>
       <AddTask v-if="newTaskDialogOpen" @close="newTaskDialogOpen = false"></AddTask>
       <div class="my-6 mt-auto flex flex-col gap-6 pt-6">
         <button class="mx-auto" @click="newTaskDialogOpen = true">
-          <CustomButton icon="mingcute:task-2-line" text="Aufgabe hinzufügen" color="green" />
+          <CustomButton text="Aufgabe hinzufügen" color="green">
+            <AddTaskIcon class="mr-2" />
+          </CustomButton>
         </button>
         <RouterLink to="/" class="mx-auto">
           <CustomButton text="Zurück" color="transparent" />

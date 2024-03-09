@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { Icon } from "@iconify/vue";
 import CustomButton from "../components/CustomButton.vue";
 import { ref } from "vue";
 import { usePlayerStore } from "@/stores/playerStore";
 import AddPlayer from "@/components/AddPlayer.vue";
 import { storeToRefs } from "pinia";
+import DeleteIcon from "virtual:icons/mingcute/delete-2-fill";
+import UserAddIcon from "virtual:icons/mingcute/user-add-2-fill";
 
 const playerStore = usePlayerStore();
 const { players } = storeToRefs(playerStore);
@@ -25,14 +26,16 @@ const newPlayerDialogOpen = ref(false);
             class="transition-transform hover:scale-110"
             @click="playerStore.removePlayer(player)"
           >
-            <Icon icon="mingcute:delete-2-fill" class="h-6 w-6 text-customRed"></Icon>
+            <DeleteIcon class="h-6 w-6 text-customRed" />
           </button>
         </div>
       </div>
       <AddPlayer v-if="newPlayerDialogOpen" @close="newPlayerDialogOpen = false" />
       <div class="my-6 mt-auto flex flex-col gap-6 pt-6">
         <button class="mx-auto" @click="newPlayerDialogOpen = true">
-          <CustomButton icon="mingcute:user-add-2-fill" text="Spieler hinzufügen" color="green" />
+          <CustomButton text="Spieler hinzufügen" color="green">
+            <UserAddIcon class="mr-2" />
+          </CustomButton>
         </button>
         <RouterLink to="/" class="mx-auto">
           <CustomButton text="Zurück" color="transparent" />
