@@ -10,8 +10,7 @@ import DownloadIcon from "~icons/mingcute/download-line";
 const showInstallButton = ref(false);
 onMounted(() => {
   // Check if the app is running in standalone mode (PWA)
-  showInstallButton.value =
-    window.navigator.standalone || window.matchMedia("(display-mode: standalone)").matches;
+  showInstallButton.value = window.matchMedia("(display-mode: standalone)").matches;
 });
 
 const installPWA = () => {
