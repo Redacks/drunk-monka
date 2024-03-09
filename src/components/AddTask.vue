@@ -1,24 +1,24 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import CustomButton from './CustomButton.vue'
-import { useStore } from '@/stores/taskStore'
+import { ref } from "vue";
+import CustomButton from "./CustomButton.vue";
+import { useTaskStore } from "@/stores/taskStore";
 
 const emit = defineEmits<{
-  (e: 'close'): void
-}>()
+  (e: "close"): void;
+}>();
 
-const tasksStore = useStore()
-const newTaskText = ref('')
-const errorMessage = ref('')
+const tasksStore = useTaskStore();
+const newTaskText = ref("");
+const errorMessage = ref("");
 
 const addNewTask = (task: string) => {
   if (tasksStore.addTask(task)) {
-    errorMessage.value = ''
-    emit('close')
+    errorMessage.value = "";
+    emit("close");
   } else {
-    errorMessage.value = 'Ungültige Aufgabe'
+    errorMessage.value = "Ungültige Aufgabe";
   }
-}
+};
 </script>
 <template>
   <div

@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
+import { Icon } from "@iconify/vue";
 
 const tailwindColorMap = {
-  green: 'bg-customGreen',
-  gray: 'bg-gray-600',
-  transparent: '',
-  red: 'bg-customRed'
-}
+  green: "bg-customGreen",
+  gray: "bg-gray-600",
+  transparent: "",
+  red: "bg-customRed"
+};
 
 const props = defineProps<{
-  text: string
-  icon?: string
-  color: keyof typeof tailwindColorMap
-}>()
+  text: string;
+  icon?: string;
+  color: keyof typeof tailwindColorMap;
+}>();
 </script>
 <template>
   <div

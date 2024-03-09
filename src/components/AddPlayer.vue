@@ -1,24 +1,24 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import CustomButton from './CustomButton.vue'
-import { useStore } from '@/stores/playerStore'
+import { ref } from "vue";
+import CustomButton from "./CustomButton.vue";
+import { usePlayerStore } from "@/stores/playerStore";
 
 const emit = defineEmits<{
-  (e: 'close'): void
-}>()
+  (e: "close"): void;
+}>();
 
-const playerStore = useStore()
-const newPlayerName = ref('')
-const errorMessage = ref('')
+const playerStore = usePlayerStore();
+const newPlayerName = ref("");
+const errorMessage = ref("");
 
 const addNewPlayer = (player: string) => {
   if (playerStore.addPlayer(player)) {
-    errorMessage.value = ''
-    emit('close')
+    errorMessage.value = "";
+    emit("close");
   } else {
-    errorMessage.value = 'Ungültiger Spielername oder Name bereits vorhanden!'
+    errorMessage.value = "Ungültiger Spielername oder Name bereits vorhanden!";
   }
-}
+};
 </script>
 <template>
   <div

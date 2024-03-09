@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import CustomLinkButton from '@/components/CustomButton.vue'
+import CustomLinkButton from "@/components/CustomButton.vue";
 </script>
 <template>
   <div class="mt-2 flex flex-col justify-center gap-6">

@@ -1,23 +1,23 @@
-import { defineStore } from 'pinia'
+import { defineStore } from "pinia";
 
-export const useStore = defineStore('tasks', {
+export const useTaskStore = defineStore("tasks", {
   state: () => ({
     tasks: [] as string[]
   }),
   actions: {
     addTask(task: string): boolean {
-      if (!this.tasks.includes(task) && task.trim() != '') {
-        this.tasks = [...this.tasks, task.trim()]
-        return true
+      if (!this.tasks.includes(task) && task.trim() != "") {
+        this.tasks = [...this.tasks, task.trim()];
+        return true;
       }
-      return false
+      return false;
     },
     removeTask(task: string) {
-      this.tasks = this.tasks.filter((value) => value != task)
+      this.tasks = this.tasks.filter((value) => value != task);
     },
     getTasks() {
-      return this.tasks
+      return this.tasks;
     }
   },
   persist: true
-})
+});

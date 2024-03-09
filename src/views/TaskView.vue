@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { Icon } from '@iconify/vue'
-import CustomButton from '../components/CustomButton.vue'
-import { useStore } from '@/stores/taskStore'
-import { storeToRefs } from 'pinia'
-import AddTask from '@/components/AddTask.vue'
+import { ref } from "vue";
+import { Icon } from "@iconify/vue";
+import CustomButton from "../components/CustomButton.vue";
+import { useTaskStore } from "@/stores/taskStore";
+import { storeToRefs } from "pinia";
+import AddTask from "@/components/AddTask.vue";
 
-const tasksStore = useStore()
-const { tasks } = storeToRefs(tasksStore)
-const newTaskDialogOpen = ref(false)
+const tasksStore = useTaskStore();
+const { tasks } = storeToRefs(tasksStore);
+const newTaskDialogOpen = ref(false);
 </script>
 <template>
   <div class="flex flex-1 flex-col text-center font-madimiOne text-customWhite">

@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
-import CustomButton from '../components/CustomButton.vue'
-import { ref } from 'vue'
-import { useStore } from '@/stores/playerStore'
-import AddPlayer from '@/components/AddPlayer.vue'
-import { storeToRefs } from 'pinia'
+import { Icon } from "@iconify/vue";
+import CustomButton from "../components/CustomButton.vue";
+import { ref } from "vue";
+import { usePlayerStore } from "@/stores/playerStore";
+import AddPlayer from "@/components/AddPlayer.vue";
+import { storeToRefs } from "pinia";
 
-const playerStore = useStore()
-const { players } = storeToRefs(playerStore)
-const newPlayerDialogOpen = ref(false)
+const playerStore = usePlayerStore();
+const { players } = storeToRefs(playerStore);
+const newPlayerDialogOpen = ref(false);
 </script>
 <template>
   <div class="flex flex-1 flex-col text-center font-madimiOne text-customWhite">
