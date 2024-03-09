@@ -16,9 +16,9 @@ export default defineConfig({
         enabled: true
       },
       manifest: {
-        name: "Drunk Monka",
-        description: "Ein Lustiges Trinkspiel mit Aufgaben",
-        short_name: "Drink-Game",
+        name: "Let's be risky!",
+        description: "Ein Lustiges Spiel um Fragen und Aufgaben zu stellen",
+        short_name: "Let's be risky!",
         theme_color: "#4DA167",
         icons: [
           {
