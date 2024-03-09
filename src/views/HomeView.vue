@@ -69,7 +69,7 @@ const installPWA = () => {
       </CustomLinkButton>
     </RouterLink>
   </div>
-  <button class="mx-auto mb-8">
+  <button class="mx-auto mb-8" @click="installPWA">
     <CustomButton text="Download" color="green">
       <DownloadIcon class="mr-2" />
     </CustomButton>
