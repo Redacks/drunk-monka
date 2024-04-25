@@ -76,5 +76,4 @@ export const useGameStore = defineStore("game", {
       this.taskPlayerMap = {};
     }
   },
-  persist: true
 });

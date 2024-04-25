@@ -17,6 +17,12 @@ export const useTaskStore = defineStore("tasks", {
     },
     getTasks() {
       return this.tasks;
+    },
+    setTasks(tasks: string[]){
+      this.tasks = tasks;
+    },
+    clearTasks() {
+      this.tasks = [];
     }
   },
   persist: true

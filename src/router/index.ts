@@ -3,6 +3,7 @@ import PlayView from "../views/PlayView.vue";
 import HomeView from "../views/HomeView.vue";
 import PlayersView from "../views/PlayersView.vue";
 import TaskView from "../views/TaskView.vue";
+import PresetView from "@/views/PresetView.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -25,6 +26,11 @@ const router = createRouter({
       path: "/tasks",
       name: "tasks",
       component: TaskView
+    },
+    {
+      path: "/presets",
+      name: "presets",
+      component: PresetView
     },
     {
       path: "/install",

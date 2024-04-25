@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import CustomButton from "../components/CustomButton.vue";
+import ConfirmDialog from "@/components/ConfirmDialog.vue";
 import { useTaskStore } from "@/stores/taskStore";
 import { storeToRefs } from "pinia";
 import AddTask from "@/components/AddTask.vue";
 import DeleteIcon from "virtual:icons/mingcute/delete-2-fill";
 import AddTaskIcon from "virtual:icons/mingcute/task-2-line";
+import SaveIcon from "virtual:icons/material-symbols/file-save-outline";
 
 const tasksStore = useTaskStore();
 const { tasks } = storeToRefs(tasksStore);
@@ -28,12 +30,37 @@ const newTaskDialogOpen = ref(false);
         </div>
       </div>
       <AddTask v-if="newTaskDialogOpen" @close="newTaskDialogOpen = false"></AddTask>
-      <div class="my-6 mt-auto flex flex-col gap-6 pt-6">
+      <div class="my-4 mt-auto flex flex-col gap-6 pt-6">
         <button class="mx-auto" @click="newTaskDialogOpen = true">
           <CustomButton text="Aufgabe hinzufügen" color="green">
             <AddTaskIcon class="mr-2" />
           </CustomButton>
         </button>
+        <div class="flex flex-row items-center gap-4 px-4">
+          <div class="flex-1">
+            <ConfirmDialog @confirm="tasksStore.clearTasks()">
+              <template #default>
+                <CustomButton text="Reset" color="red">
+                  <DeleteIcon class="mr-2" />
+                </CustomButton>
+              </template>
+              <template #confirm>
+                <CustomButton text="Aufgaben löschen" color="red">
+                  <DeleteIcon class="mr-2" />
+                </CustomButton>
+              </template>
+              <template #cancel>
+                <CustomButton text="Abbrechen" color="transparent" />
+              </template>
+            </ConfirmDialog>
+          </div>
+          <button class="flex-1" @click="newTaskDialogOpen = true"></button>
+          <RouterLink to="/presets" class="flex-1">
+            <CustomButton text="Presets" color="gray">
+              <SaveIcon class="mr-2" />
+            </CustomButton>
+          </RouterLink>
+        </div>
         <RouterLink to="/" class="mx-auto">
           <CustomButton text="Zurück" color="transparent" />
         </RouterLink>

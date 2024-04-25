@@ -1,14 +1,21 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import CustomButton from "../components/CustomButton.vue";
-import ConfirmGameCancel from "@/components/ConfirmGameCancel.vue";
 import { useGameStore } from "@/stores/gameStore";
+import { useRouter } from "vue-router";
 
 import StopIcon from "virtual:icons/mingcute/stop-fill";
 import NextTaskIcon from "virtual:icons/mingcute/arrow-right-fill";
+import ConfirmDialog from "@/components/ConfirmDialog.vue";
+import PlayIcon from "virtual:icons/mingcute/play-fill";
 
 const gameStore = useGameStore();
-const openConfirmGameCancel = ref(false);
+const router = useRouter();
+
+const clearGameData = () => {
+  gameStore.clearGameState();
+  router.push("/");
+};
 
 const currentTask = ref(
   'Drücke "Nächste Aufgabe" um die erste Aufgabe zu erhalten.\n\n Viel Spaß!'
@@ -22,7 +29,6 @@ const currentTask = ref(
           {{ currentTask }}
         </div>
       </div>
-      <ConfirmGameCancel v-if="openConfirmGameCancel" @close="openConfirmGameCancel = false" />
       <div class="my-6 mt-auto flex flex-col gap-10 pt-6">
         <button
           class="mx-auto scale-125"
@@ -32,11 +38,23 @@ const currentTask = ref(
             <NextTaskIcon class="mr-2" />
           </CustomButton>
         </button>
-        <button class="mx-auto" @click="openConfirmGameCancel = true">
-          <CustomButton text="Spiel stoppen" color="red">
-            <StopIcon class="mr-2" />
-          </CustomButton>
-        </button>
+
+        <ConfirmDialog @cancel="clearGameData">
+          <template #default>
+            <CustomButton text="Spiel stoppen" color="red">
+              <StopIcon class="mr-2" />
+            </CustomButton>
+          </template>
+          <template #confirm>
+            <div class="scale-125">
+              <CustomButton text="Spiel fortsetzen" color="green">
+                <PlayIcon class="mr-2" />
+              </CustomButton></div
+          ></template>
+          <template #cancel>
+            <CustomButton text="Spiel beenden" color="red"> <StopIcon class="mr-2" /> </CustomButton
+          ></template>
+        </ConfirmDialog>
       </div>
     </div>
   </div>

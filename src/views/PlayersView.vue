@@ -31,7 +31,7 @@ const newPlayerDialogOpen = ref(false);
         </div>
       </div>
       <AddPlayer v-if="newPlayerDialogOpen" @close="newPlayerDialogOpen = false" />
-      <div class="my-6 mt-auto flex flex-col gap-6 pt-6">
+      <div class="my-4 mt-auto flex flex-col gap-6 pt-6">
         <button class="mx-auto" @click="newPlayerDialogOpen = true">
           <CustomButton text="Spieler hinzufügen" color="green">
             <UserAddIcon class="mr-2" />
