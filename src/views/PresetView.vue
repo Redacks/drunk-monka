@@ -8,11 +8,17 @@ import { systemPresets } from "@/stores/presetsStore";
 import { ref } from "vue";
 import { storeToRefs } from "pinia";
 import ConfirmDialog from "@/components/ConfirmDialog.vue";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const newPresetName = ref("");
-
 const presetStore = usePresetStore();
 const { presets } = storeToRefs(presetStore);
+
+function loadAndRedirect(presetName: string) {
+  presetStore.loadPreset(presetName);
+  router.push("/tasks");
+}
 </script>
 <template>
   <div class="flex flex-1 flex-col text-center font-madimiOne text-customWhite">
@@ -28,7 +34,7 @@ const { presets } = storeToRefs(presetStore);
           <div
             class="flex w-[80%] flex-row justify-between border-t-2 border-solid border-customWhite py-4"
           >
-            <ConfirmDialog @confirm="presetStore.loadPreset(preset)">
+            <ConfirmDialog @confirm="loadAndRedirect(preset)">
               <template #default>
                 <div class="mx-auto text-customWhite transition-transform hover:scale-110">
                   <LoadTasks class="block h-7 w-7" />
