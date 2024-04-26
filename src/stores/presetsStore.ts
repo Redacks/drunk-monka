@@ -1,15 +1,16 @@
 import { defineStore } from "pinia";
 import { useTaskStore } from "./taskStore";
+import { basicPresetTasks } from "@/constants/basicPreset";
 
 interface Presets {
   [name: string]: string[] | undefined;
 }
 
-export const systemPresets = ["Risky", "Standart"];
+export const systemPresets = ["Risky", "Basic"];
 
 export const usePresetStore = defineStore("preset", {
   state: () => ({
-    presets: {} as Presets
+    presets: { Basic: basicPresetTasks } as Presets
   }),
   actions: {
     savePreset(name: string) {

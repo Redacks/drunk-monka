@@ -36,7 +36,7 @@ const newTaskDialogOpen = ref(false);
             <AddTaskIcon class="mr-2" />
           </CustomButton>
         </button>
-        <div class="flex flex-row items-center gap-4 px-4">
+        <div class="mx-auto flex flex-row items-center gap-4 px-4">
           <div class="flex-1">
             <ConfirmDialog @confirm="tasksStore.clearTasks()">
               <template #default>
