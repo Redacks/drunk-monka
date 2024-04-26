@@ -35,7 +35,7 @@ const { presets } = storeToRefs(presetStore);
                 </div>
               </template>
               <template #confirm>
-                <CustomButton text="Aufgaben laden" color="green">
+                <CustomButton text="Preset laden!" color="green">
                   <LoadTasks class="block h-6 w-6" />
                 </CustomButton>
               </template>

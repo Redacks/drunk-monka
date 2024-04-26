@@ -30,7 +30,7 @@ export const useGameStore = defineStore("game", {
 
         const randomPlayer = this.getRandomPlayer(availablePlayers);
         this.saveTaskCompletion(randomTask, randomPlayer);
-        return randomTask.replace("{player}", randomPlayer);
+        return randomTask.replace(new RegExp(/{player}/gm), randomPlayer);
       } else {
         return randomTask;
       }
@@ -75,5 +75,5 @@ export const useGameStore = defineStore("game", {
     clearGameState() {
       this.taskPlayerMap = {};
     }
-  },
+  }
 });
